@@ -1,0 +1,15 @@
+{
+    "name": "niltonmorais/facebooksdk",
+    "description": "Atividades do curso de ChatBot da CodeEducation",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1",
+        "phpunit/phpunit": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "CodeBot\\": "src"
+        }
+    }
+}
