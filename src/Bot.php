@@ -13,16 +13,27 @@ class Bot
         $this->pageAccessToken = $pageAccessToken;
     }
 
-    public function setSenderId(string $senderId)
+    public function message(string $type, string $message)
     {
-        $this->senderId = $senderId;
-        return $this;
+        $type = $this->load($type, 'CodeBot\Message');
+        $message = $type->message($message);
+        return $this->callSendApi($message);
     }
 
-    public function setPageAccessToken(string $pageAccessToken)
+    public function template(string $type, string $message, array $elements, array $config = [])
     {
-        $this->pageAccessToken = $pageAccessToken;
-        return $this;
+        $type = $this->load($type."Template", 'CodeBot\TemplatesMessage');
+
+        foreach($config as $method => $params){
+            call_user_func_array([$type, $method], $params);
+        }
+
+        foreach($elements as $element){
+            $type->add($elements);
+        }
+
+        $message = $type->message($message);
+        return $this->callSendApi($message);
     }
 
     public function load($class, $namespace)
