@@ -4,7 +4,8 @@ namespace CodeBot;
 use CodeBot\Message\Text;
 use PHPUnit\Framework\TestCase;
 
-class CallSendApiTest extends TestCase{
+class CallSendApiTest extends TestCase
+{
     /**
      * @expectedException \GuzzleHttp\Exception\ClientException
      */
