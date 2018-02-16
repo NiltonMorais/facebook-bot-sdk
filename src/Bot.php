@@ -40,7 +40,7 @@ class Bot
         }
 
         foreach($elements as $element){
-            $type->add($elements);
+            $type->add($element);
         }
 
         $message = $type->message($message);
