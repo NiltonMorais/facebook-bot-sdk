@@ -36,6 +36,40 @@ class Bot
         return $this->callSendApi($message);
     }
 
+    public function addGetStartedButton(string $postback)
+    {
+        $data = (new GetStartedButton())->add($postback);
+        return $this->callSendApi($data, CallSendApi::URL_PROFILE);
+    }
+
+    public function removeGetStartedButton()
+    {
+        $data = (new GetStartedButton())->remove();
+        return $this->callSendApi($data, CallSendApi::URL_PROFILE, 'DELETE');
+    }
+
+    public function addMenu(string $locale, string $composer_input_disabled, array $call_to_actions)
+    {
+        $menu = new MenuManager($locale, $composer_input_disabled);
+
+        foreach($call_to_actions as $action){
+            $menu->callToAction($action['id'], $action['type'], $action['title'], $action['parent_id'], $action['value']);
+        }
+
+        return $this->callSendApi($menu->toArray(),callSendApi::URL_PROFILE);
+    }
+
+    public function removeMenu()
+    {
+        $data = [
+            'fields' => [
+                'persistent_menu'
+            ]
+        ];
+
+        return $this->callSendApi($data,callSendApi::URL_PROFILE, 'DELETE');
+    }
+
     public function load($class, $namespace)
     {
         $class = ucfirst($class);
