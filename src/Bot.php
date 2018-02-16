@@ -7,12 +7,23 @@ class Bot
     private $senderId;
     private $pageAccessToken;
 
-    public function __construct(string $senderId, string $pageAccessToken)
+    public function __construct(string $senderId = null, string $pageAccessToken = null)
     {
         $this->senderId = $senderId;
         $this->pageAccessToken = $pageAccessToken;
     }
 
+    public function setSenderId(string $senderId)
+    {
+        $this->senderId = $senderId;
+        return $this;
+    }
+    public function setPageAccessToken(string $pageAccessToken)
+    {
+        $this->pageAccessToken = $pageAccessToken;
+        return $this;
+    }
+    
     public function message(string $type, string $message)
     {
         $type = $this->load($type, 'CodeBot\Message');
