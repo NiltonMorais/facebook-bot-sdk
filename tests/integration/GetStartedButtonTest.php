@@ -7,10 +7,20 @@ class GetStartedButtonTest extends TestCase
 {
     public function testAddGetStartedButton()
     {
-        $pageAccessToken = 'EAAcL1nhyAg4BAEDwMUNYwG1nkyMglzKFskdVXHxZCaxV9L8KInC1EiJwCCCmx5nv88gI8YdlBfTvNaViBaNuEPrFc8iuXoRQmv9l5TfpDl8NDipbMB9JqvC7KoZAfWul1uBqkl6hB6alz7ShYKw8PGf6XxZCascZAMQzZCF73kgZDZD';
+        $pageAccessToken = 'AQUI_VAI_SEU_ACCESS_TOKEN';
         $data = (new GetStartedButton())->add('Iniciar');
         $callSendApi = new CallSendApi($pageAccessToken);
         $result = $callSendApi->make($data, CallSendApi::URL_PROFILE);
+
+        $this->assertTrue(is_string($result));
+    }
+
+    public function testRemoveGetStartedButton()
+    {
+        $pageAccessToken = 'AQUI_VAI_SEU_ACCESS_TOKEN';
+        $data = (new GetStartedButton())->remove();
+        $callSendApi = new CallSendApi($pageAccessToken);
+        $result = $callSendApi->make($data, CallSendApi::URL_PROFILE, 'DELETE');
 
         $this->assertTrue(is_string($result));
     }
