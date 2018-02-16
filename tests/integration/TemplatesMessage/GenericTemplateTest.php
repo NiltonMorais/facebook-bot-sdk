@@ -8,7 +8,7 @@ use CodeBot\Element\Button;
 
 class GenericTemplateTest extends TestCase
 {
-    public function testListWithThreeProducts()
+    public function testListWithTwoProducts()
     {
         $button1 = new Button('web_url', null, 'https://angular.io/');
         $button2 = new Button('web_url', null, 'https://vuejs.org/');
